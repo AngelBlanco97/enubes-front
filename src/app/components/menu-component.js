@@ -1,17 +1,15 @@
+import { useAuth } from "@/hooks/use-auth";
+
 export default function MenuComponent() {
-  const user = {
-    first_name: "John",
-    last_name: "Doe",
-  };
-  const isAuthenticated = true;
+  const { user } = useAuth();
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">
           eNubes Hotel
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -19,13 +17,13 @@ export default function MenuComponent() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <a
-                class="nav-link active"
+                className="nav-link active"
                 aria-current="page"
                 href="/habitaciones"
               >
@@ -33,11 +31,11 @@ export default function MenuComponent() {
               </a>
             </li>
           </ul>
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
-            {isAuthenticated ? (
-              <li class="nav-item dropdown">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
+            {user ? (
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -48,18 +46,22 @@ export default function MenuComponent() {
                     ? user.first_name + " " + user.last_name
                     : "Inicia sesión"}
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul
+                  className="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="navbarDropdown"
+                >
                   <li>
-                    <a class="dropdown-item" href="/reservas">
-                      <i class="fas fa-sliders-h fa-fw"></i> Mis reservas
+                    <a className="dropdown-item" href="/reservas">
+                      <i className="fas fa-sliders-h fa-fw"></i> Mis reservas
                     </a>
                   </li>
                   <li>
-                    <hr class="dropdown-divider" />
+                    <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <button class="dropdown-item" onClick={() => {}}>
-                      <i class="fas fa-sign-out-alt fa-fw"></i> Cerrar sesión
+                    <button className="dropdown-item" onClick={() => {}}>
+                      <i className="fas fa-sign-out-alt fa-fw"></i> Cerrar
+                      sesión
                     </button>
                   </li>
                 </ul>
