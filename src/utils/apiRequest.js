@@ -1,3 +1,4 @@
+import axios from "axios";
 import queryString from "query-string";
 
 const STORAGE_KEY = "access_token";
@@ -92,14 +93,15 @@ export const apiRequest = async (url, options = DEFAULT_OPTIONS) => {
     query: params,
   });
 
-  return fetch(urlWithParams, {
-    ...rest,
+  return axios({
+    url: urlWithParams,
     method: rest.method || "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       ...rest.headers,
     },
+    data: rest.body,
   })
     .then(evaluateResponse)
     .then(handleResponseFormat);
