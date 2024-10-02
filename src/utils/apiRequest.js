@@ -3,54 +3,6 @@ import queryString from "query-string";
 
 const STORAGE_KEY = "access_token";
 
-const evaluateResponse = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-
-  const contentType = response.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    return response.json().then((json) => {
-      // If response status is 401, remove token from localStorage and reload the page
-      if (response.status === 401 && json.message === "Unauthenticated.") {
-        // globalThis.localStorage.removeItem(STORAGE_KEY);
-        // globalThis.location.reload();
-      }
-      const error = new Error(json.message);
-      error.response = response;
-      error.data = json;
-      throw error;
-    });
-  }
-
-  return response.text().then((text) => {
-    const error = new Error(text);
-    error.response = response;
-    throw error;
-  });
-
-  // const error = new Error(response.statusText);
-  // error.response = response;
-  // throw error;
-};
-
-const handleResponseFormat = (response) => {
-  const contentType = response.headers.get("content-type");
-
-  // JSON response
-  if (contentType && contentType.includes("application/json")) {
-    return response.json();
-  }
-
-  // File response
-  if (contentType && contentType.includes("application/octet-stream")) {
-    return response.blob();
-  }
-
-  // Text response
-  return response.text();
-};
-
 const DEFAULT_OPTIONS = {
   useToken: true,
   params: {},
@@ -93,7 +45,7 @@ export const apiRequest = async (url, options = DEFAULT_OPTIONS) => {
     query: params,
   });
 
-  return axios({
+  return await axios({
     url: urlWithParams,
     method: rest.method || "GET",
     headers: {
@@ -102,7 +54,5 @@ export const apiRequest = async (url, options = DEFAULT_OPTIONS) => {
       ...rest.headers,
     },
     data: rest.body,
-  })
-    .then(evaluateResponse)
-    .then(handleResponseFormat);
+  });
 };

@@ -1,8 +1,9 @@
 "use client";
-import { authApi } from "@/api/auth";
+import { useAuth } from "@/hooks/use-auth";
 import { useState, useCallback } from "react";
 
 const useLogin = () => {
+  const { signIn } = useAuth();
   const [form, setform] = useState({
     email: "",
     password: "",
@@ -18,9 +19,15 @@ const useLogin = () => {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      await authApi.signIn(form);
+      await signIn(form.email, form.password).then(() => {
+        setform({
+          email: "",
+          password: "",
+        });
+        window.location.href = "/";
+      });
     },
-    [form]
+    [form, signIn]
   );
 
   return {

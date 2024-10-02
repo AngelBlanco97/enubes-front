@@ -68,7 +68,7 @@ class AuthApi {
    * @throws {Error} The error object
    */
   async me() {
-    return apiRequest("/me");
+    return apiRequest("/auth/me");
   }
 }
 

@@ -74,11 +74,11 @@ export const AuthProvider = (props) => {
       let accessToken = globalThis.localStorage.getItem(TOKEN_KEY);
 
       if (accessToken) {
-        const user = await authApi.me();
+        const res = await authApi.me();
         dispatch({
           type: ActionType.INITIALIZE,
           payload: {
-            user,
+            user: res.data.user,
             token: accessToken,
           },
         });
@@ -99,13 +99,13 @@ export const AuthProvider = (props) => {
 
   const signIn = useCallback(
     async (email, password) => {
-      const { access_token, user } = await authApi.signIn({ email, password });
-      localStorage.setItem(TOKEN_KEY, access_token);
-
+      const response = await authApi.signIn({ email, password });
+      localStorage.setItem(TOKEN_KEY, response.data.access_token);
       dispatch({
         type: ActionType.SIGN_IN,
         payload: {
-          user,
+          user: response.data.user,
+          isAuthenticated: true,
         },
       });
     },
@@ -138,6 +138,7 @@ export const AuthProvider = (props) => {
           type: ActionType.SIGN_UP,
           payload: {
             user,
+            isAuthenticated: true,
           },
         });
       } catch (error) {

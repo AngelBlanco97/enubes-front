@@ -1,7 +1,8 @@
 import { useAuth } from "@/hooks/use-auth";
 
 export default function MenuComponent() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -42,9 +43,7 @@ export default function MenuComponent() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {isAuthenticated
-                    ? user.first_name + " " + user.last_name
-                    : "Inicia sesión"}
+                  {user ? user.name + " " + user.last_name : "Inicia sesión"}
                 </a>
                 <ul
                   className="dropdown-menu dropdown-menu-dark"
@@ -59,7 +58,7 @@ export default function MenuComponent() {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <button className="dropdown-item" onClick={() => {}}>
+                    <button className="dropdown-item" onClick={signOut}>
                       <i className="fas fa-sign-out-alt fa-fw"></i> Cerrar
                       sesión
                     </button>
