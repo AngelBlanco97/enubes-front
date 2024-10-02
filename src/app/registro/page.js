@@ -1,5 +1,6 @@
 "use client";
 import { authApi } from "@/api/auth";
+import { useAuth } from "@/hooks/use-auth";
 import { useState, useCallback } from "react";
 
 const useRegister = () => {
@@ -36,6 +37,7 @@ const useRegister = () => {
 
 export default function Register() {
   const { form, handleChange, handleSubmit } = useRegister();
+  const { user } = useAuth();
 
   return (
     <section className="">
@@ -54,105 +56,107 @@ export default function Register() {
               </p>
             </div>
 
-            <div className="col-lg-6 mb-5 mb-lg-0">
-              <div className="card">
-                <div className="card-body py-5 px-md-5">
-                  <form onSubmit={handleSubmit}>
-                    <div data-mdb-input-init className="form-outline mb-4">
-                      <input
-                        type="text"
-                        id="form2Example1"
-                        className="form-control"
-                        name="firstName"
-                        value={form.firstName}
-                        onChange={handleChange}
-                      />
-                      <label
-                        className="form-label
+            {!user && (
+              <div className="col-lg-6 mb-5 mb-lg-0">
+                <div className="card">
+                  <div className="card-body py-5 px-md-5">
+                    <form onSubmit={handleSubmit}>
+                      <div data-mdb-input-init className="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="form2Example1"
+                          className="form-control"
+                          name="firstName"
+                          value={form.firstName}
+                          onChange={handleChange}
+                        />
+                        <label
+                          className="form-label
                         "
-                        htmlFor="form2Example1"
-                      >
-                        Nombre
-                      </label>
-                    </div>
+                          htmlFor="form2Example1"
+                        >
+                          Nombre
+                        </label>
+                      </div>
 
-                    <div data-mdb-input-init className="form-outline mb-4">
-                      <input
-                        type="text"
-                        id="form2Example1"
-                        className="form-control"
-                        name="lastName"
-                        value={form.lastName}
-                        onChange={handleChange}
-                      />
-                      <label
-                        className="form-label
+                      <div data-mdb-input-init className="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="form2Example1"
+                          className="form-control"
+                          name="lastName"
+                          value={form.lastName}
+                          onChange={handleChange}
+                        />
+                        <label
+                          className="form-label
                         "
-                        htmlFor="form2Example1"
+                          htmlFor="form2Example1"
+                        >
+                          Apellido
+                        </label>
+                      </div>
+
+                      <div data-mdb-input-init className="form-outline mb-4">
+                        <input
+                          type="email"
+                          id="form2Example1"
+                          className="form-control"
+                          name="email"
+                          value={form.email}
+                          onChange={handleChange}
+                        />
+                        <label className="form-label" htmlFor="form2Example1">
+                          Email address
+                        </label>
+                      </div>
+
+                      <div data-mdb-input-init className="form-outline mb-4">
+                        <input
+                          type="password"
+                          id="form2Example2"
+                          className="form-control"
+                          name="password"
+                          value={form.password}
+                          onChange={handleChange}
+                        />
+                        <label className="form-label" htmlFor="form2Example2">
+                          Password
+                        </label>
+                      </div>
+                      <div data-mdb-input-init className="form-outline mb-4">
+                        <input
+                          type="password"
+                          id="form2Example3"
+                          className="form-control"
+                          name="password_confirm"
+                          value={form.password_confirm}
+                          onChange={handleChange}
+                        />
+                        <label className="form-label" htmlFor="form2Example2">
+                          Confirm password
+                        </label>
+                      </div>
+
+                      <button
+                        type="submit"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-primary btn-block mb-4 mt-2"
                       >
-                        Apellido
-                      </label>
-                    </div>
+                        Regístrame 🚀
+                      </button>
 
-                    <div data-mdb-input-init className="form-outline mb-4">
-                      <input
-                        type="email"
-                        id="form2Example1"
-                        className="form-control"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                      />
-                      <label className="form-label" htmlFor="form2Example1">
-                        Email address
-                      </label>
-                    </div>
-
-                    <div data-mdb-input-init className="form-outline mb-4">
-                      <input
-                        type="password"
-                        id="form2Example2"
-                        className="form-control"
-                        name="password"
-                        value={form.password}
-                        onChange={handleChange}
-                      />
-                      <label className="form-label" htmlFor="form2Example2">
-                        Password
-                      </label>
-                    </div>
-                    <div data-mdb-input-init className="form-outline mb-4">
-                      <input
-                        type="password"
-                        id="form2Example3"
-                        className="form-control"
-                        name="password_confirm"
-                        value={form.password_confirm}
-                        onChange={handleChange}
-                      />
-                      <label className="form-label" htmlFor="form2Example2">
-                        Confirm password
-                      </label>
-                    </div>
-
-                    <button
-                      type="submit"
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      className="btn btn-primary btn-block mb-4 mt-2"
-                    >
-                      Regístrame 🚀
-                    </button>
-
-                    <div className="text-center">
-                      <p>
-                        o inicia sesión <a href="/login">aquí</a>
-                      </p>
-                    </div>
-                  </form>
+                      <div className="text-center">
+                        <p>
+                          o inicia sesión <a href="/login">aquí</a>
+                        </p>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
