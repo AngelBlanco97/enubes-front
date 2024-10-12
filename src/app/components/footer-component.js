@@ -4,7 +4,7 @@ export default function FooterComponent() {
   const { user } = useAuth();
 
   return (
-    <footer className="bg-dark text-white pt-4">
+    <footer className="bg-dark text-white pt-4 pb-5">
       <div className="container">
         <div className="row">
           <div className="col-md-4">

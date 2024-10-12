@@ -48,6 +48,17 @@ class HabsApi {
       body: JSON.stringify({ from, to }),
     });
   }
+
+  /**
+   * Get reservation
+   * @returns {Promise} The response object
+   * @throws {Error} The error object
+   */
+  async getReservation(id) {
+    return apiRequest(`/reservations/${id}`, {
+      method: "GET",
+    });
+  }
 }
 
 export const habsApi = new HabsApi();
