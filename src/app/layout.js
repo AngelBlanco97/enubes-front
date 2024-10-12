@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import MenuComponent from "./components/menu-component";
 import { AuthConsumer, AuthProvider } from "./context/AuthContext";
+import FooterComponent from "./components/footer-component";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
                 <>
                   <MenuComponent />
                   {children}
+                  <FooterComponent />
                 </>
               );
             }}

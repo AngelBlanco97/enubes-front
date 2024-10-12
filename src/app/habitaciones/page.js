@@ -208,8 +208,8 @@ export default function Habitaciones() {
           </header>
 
           <div className="row">
-            <div class="container text-center">
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div className="container text-center">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                 {!data && !isLoading && (
                   <div className="alert alert-warning">No hay resultados</div>
                 )}

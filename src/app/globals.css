@@ -78,3 +78,79 @@
   flex: 0 0 auto;
   margin-top: auto;
 }
+
+/* Contenedor principal */
+.room-detail-container {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del carrusel de imágenes */
+.room-images {
+  margin-bottom: 20px;
+}
+
+.room-carousel img {
+  border-radius: 10px;
+  height: 350px;
+  object-fit: cover;
+}
+
+/* Estilo del nombre y tipo de habitación */
+.room-name {
+  font-family: "Playfair Display", serif;
+  color: #343a40;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.room-type {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+/* Descripción y precio */
+.room-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.room-price {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #28a745;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+/* Servicios de la habitación */
+.room-services ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.room-services ul li {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #6c757d;
+  padding: 5px 0;
+}
+
+/* Fechas de reserva */
+.room-reservations ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.room-reservations ul li {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #dc3545;
+  padding: 5px 0;
+}

@@ -25,6 +25,29 @@ class HabsApi {
       method: "GET",
     });
   }
+
+  /**
+   * Get current hab
+   * @returns {Promise} The response object
+   * @throws {Error} The error object
+   */
+  async getHabInfo(slug) {
+    return apiRequest(`/habs/${slug}`, {
+      method: "GET",
+    });
+  }
+
+  /**
+   * Reserve hab
+   * @returns {Promise} The response object
+   * @throws {Error} The error object
+   */
+  async reserveHab(id, from, to) {
+    return apiRequest(`/habs/${id}/reserve`, {
+      method: "POST",
+      body: JSON.stringify({ from, to }),
+    });
+  }
 }
 
 export const habsApi = new HabsApi();
